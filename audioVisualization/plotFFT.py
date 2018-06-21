@@ -16,10 +16,10 @@ class Main(QMainWindow):
         self.xVals = []
         self.yVals = []
         self.flipAxis = True
-        self.readVals('testFile.csv') # CHANGE MY NAME FROM TEST.CSV TO UR FILE
+        self.readVals('10000hz.csv') # CHANGE MY NAME FROM TEST.CSV TO UR FILE
         fft = scipy.fftpack.rfft(self.yVals)
-        for i in fft:
-            sys.stdout.write(str(i)+",")
+        #for i in fft:
+            #sys.stdout.write(str(i)+",")
         self.ui.plotWidget.plot(self.xVals,scipy.fftpack.rfft(self.yVals),pen = (1,3))
                 
         # to look closer you can use right click
