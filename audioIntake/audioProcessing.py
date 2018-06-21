@@ -14,7 +14,7 @@ def wavToData(wavName):
     sample_rate = stream.getframerate()
     sample_width = stream.getsampwidth()
     num_frames = stream.getnframes()
-
+    
     raw_data = stream.readframes( num_frames ) # Returns byte data
     stream.close()
 
@@ -30,9 +30,20 @@ def wavToData(wavName):
     total_samples = num_frames * num_channels
 
     integer_data = struct.unpack(fmt, raw_data) 
-
     return integer_data, num_frames, sample_rate
 
+def dataToWav(wavName,data):
+    # IMPORTANT hard coded standard values, refenced from the audiocheck.net files
+    stream = wave.open(wavName,"wb")
+    stream.setnchannels(1)
+    stream.setframerate(44100)
+    stream.setsampwidth(2)
+    stream.setnframes(132301)
+    fmt = "%ih" % 132301*1 
+        
+    data = struct.pack(fmt,*data) #unpacks all
+    stream.writeframes(data)
+    
 def wavToCsv(wavName,csvName):
     with open(csvName, 'wb') as csvfile: #contain all data in 1 row
                                                 # x = time (1 frame)
@@ -49,5 +60,6 @@ def wavToCsv(wavName,csvName):
         fullData.insert(0,"Frequency(dBfs)")
         fullData = frameCount+fullData
         filewriter.writerow(fullData)
+    
 wavToCsv('audiocheck.net_sin_4000Hz_-3dBFS_3s.wav','4000hz.csv')
 #include tags (.wav/.csv)
