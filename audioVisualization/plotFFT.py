@@ -16,7 +16,7 @@ class Main(QMainWindow):
         self.xVals = []
         self.yVals = []
         self.flipAxis = True
-        self.readVals('10000hz.csv') # CHANGE MY NAME FROM TEST.CSV TO UR FILE
+        self.readVals('1000Hz+4000Hz.csv') # CHANGE MY NAME FROM TEST.CSV TO UR FILE
         fft = scipy.fftpack.rfft(self.yVals)
         #for i in fft:
             #sys.stdout.write(str(i)+",")
