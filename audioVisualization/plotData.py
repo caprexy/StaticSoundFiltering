@@ -15,7 +15,7 @@ class Main(QMainWindow):
         self.xVals = []
         self.yVals = []
         self.flipAxis = True
-        self.readVals('testFile.csv') # CHANGE MY NAME FROM TEST.CSV TO UR FILE
+        self.readVals('1000Hz+4000Hz.csv') # CHANGE MY NAME FROM TEST.CSV TO UR FILE
         self.ui.plotWidget.plot(self.xVals,self.yVals,pen = (1,3))
                 
         # to look closer you can use right click
@@ -37,6 +37,14 @@ class Main(QMainWindow):
                         else:
                             self.label_2.setText(item.pop(0))
                         self.flipAxis = not self.flipAxis
+            
+            if len(self.xVals) != len(self.yVals):
+                
+                if (len(self.yVals) > len(self.xVals)):
+                    print ("a")
+                    while len(self.xVals) != len(self.yVals):
+                        self.xVals.append((self.xVals[-1]+1))
+                        
 
                     
             

@@ -45,6 +45,10 @@ class Main(QMainWindow):
                         else:
                             self.label.setText(item.pop(0))
                         self.flipAxis = not self.flipAxis
+            if len(self.xVals) != len(self.yVals):
+                if (self.yVals > self.xVals):
+                    while len(self.xVals) != len(self.yVals):
+                        self.xVals.append((self.xVals[-1]+1))
 
             
     # 85-255

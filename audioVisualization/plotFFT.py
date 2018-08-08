@@ -16,7 +16,7 @@ class Main(QMainWindow):
         self.xVals = []
         self.yVals = []
         self.flipAxis = True
-        self.readVals('1000Hz+4000Hz.csv') # CHANGE MY NAME FROM TEST.CSV TO UR FILE
+        self.readVals('carDrive.csv') # CHANGE MY NAME FROM TEST.CSV TO UR FILE
         fft = scipy.fftpack.rfft(self.yVals)
         #for i in fft:
             #sys.stdout.write(str(i)+",")
@@ -41,6 +41,10 @@ class Main(QMainWindow):
                         else:
                             self.label.setText(item.pop(0))
                         self.flipAxis = not self.flipAxis
+            if len(self.xVals) != len(self.yVals):
+                if (self.yVals > self.xVals):
+                    while len(self.xVals) != len(self.yVals):
+                        self.xVals.append((self.xVals[-1]+1))
 
                     
             
