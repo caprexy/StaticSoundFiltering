@@ -60,4 +60,4 @@ def cutter(wavName, cutLength, numCut): # name, seconds of cut, number of cuts
 ##for i in endList:
 ##    cutter(i,.45,2)
 
-cutter("RHCXX7vA2QY (3).wav",.9, 300)
+cutter("RHCXX7vA2QY (3).wav",.9, 300) #edit to change the name, length, and cut size

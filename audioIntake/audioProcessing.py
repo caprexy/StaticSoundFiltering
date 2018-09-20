@@ -9,7 +9,8 @@ import os
 # all files and stuffs need to contain their tags ('potatos.wav')
 
 def wavToData(wavName):
-    stream = wave.open("pureTalk\\%s"%wavName)
+                            #need to include wavName\\
+    stream = wave.open("soundSamples\\%s"%wavName)
 
     num_channels = stream.getnchannels()
     sample_rate = stream.getframerate()
@@ -83,9 +84,10 @@ def mergeWavData(wav1,wav2,mergeWav): #generates a brand new wav file
 #wavToCsv('1000Hz+4000Hz.wav','1000Hz+4000Hz.csv') # maeks csv out of wav ayayayay
 #include tags (.wav/.csv)
 
+#code to merge 2 sound files together
 talkingList = [] # seperates sounds
 otherList = []
-for filename in os.listdir("C:\\Users\\School\\Documents\\GitHub\\StaticSoundFiltering\\audioIntake\\soundSamples\\pureTalk"):
+for filename in os.listdir("C:\\Users\\School\\Documents\\GitHub\\StaticSoundFiltering\\audioIntake\\soundSamples\\pureTalk"): #edit
     if ".wav" in filename:
         filename = filename[:-4]
 	#seperate talking and non talking
