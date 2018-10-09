@@ -17,9 +17,9 @@ from sklearn.naive_bayes import GaussianNB
 import sklearn.naive_bayes
 def wavToData(wavName):
     try:
-        stream = wave.open("point9SlicedMergedSamples\\%s"%wavName)
+        stream = wave.open("soundSamples\\point9SlicedMergedSamples\\%s"%wavName)
     except IOError:
-        stream = wave.open("puretalking\\%s"%wavName)
+        stream = wave.open("soundSamples\\point9TalkingSamples\\%s"%wavName)
 
     num_channels = stream.getnchannels()
     sample_rate = stream.getframerate()
@@ -48,12 +48,12 @@ def dataMaker():
     for filename in os.listdir('C:\\Users\\School\\Documents\\GitHub\\StaticSoundFiltering\\audioIntake\\soundSamples\\point9SlicedMergedSamples\\'):
             if ".wav" in filename:
                     endList.append(filename)
-    for filename in os.listdir('C:\\Users\\School\\Documents\\GitHub\\StaticSoundFiltering\\audioIntake\\soundSamples\\puretalking\\'):
+    for filename in os.listdir('C:\\Users\\School\\Documents\\GitHub\\StaticSoundFiltering\\audioIntake\\soundSamples\\point9TalkingSamples\\'):
             if ".wav" in filename:
                     endList.append(filename)
 
-    # does go in order so can grab each three
-    n_samples = 200 # 100 merged sounds
+    # does go in order so can grab each three. 1 sample is of either talking or megred and 3 samples (features, which is amplitude data)
+    n_samples = 200 # 200 merged sounds
     n_features = 3 # the range of human hearing * 3 for each clip per sample
 
     data = np.empty((n_samples, n_features))
@@ -66,7 +66,7 @@ def dataMaker():
     minData = 0
     
     while ( x != n_samples):
-            file1 = endList.pop(0)
+            file1 = endList.pop(0)  
             file2 = endList.pop(0)
             file3 = endList.pop(0)
             
@@ -90,26 +90,24 @@ def dataMaker():
             # sets the target label, 0 if it is a talking data set, 1 if..         
             if(x > 100):
                     target[x] = np.asarray(0,dtype=np.int) # pure talk
-                    
             else:
                     target[x] = np.asarray(1,dtype=np.int)# sound
-                    
             x+=1
 
     # data normalization, failed to improve gnb but improved linearSVC a bit
-##    
-##    while x != len(data):
-##        array = data[x]
-##        for i in range(3):
-##            array[i] = (array[i]-minData)/(maxData-minData)
-##        x+=1
-##        
-##    
+    
+    while x != len(data):
+        array = data[x]
+        for i in range(3):
+            array[i] = (array[i]-minData)/(maxData-minData)
+        x+=1
+        
+    
     data = shuffle(data,random_state = 400)
     target = shuffle(target,random_state = 400)
     data = Bunch(data=data,target=target)
     return data
-
+print "linearsvc"
 data = dataMaker()
 train, test, train_targets, test_tagets = train_test_split(data.data, data.target, test_size = .33, random_state = 42)
 
@@ -126,3 +124,10 @@ gnb.fit(train, train_targets)
 
 predictions2 = gnb.predict(test)
 print (accuracy_score(test_tagets, predictions2))
+##
+##from sklearn.svm import SVC
+##svc =SVC(gamma="auto")
+##clf.fit(train,train_targets)
+##clf.predict(test)
+##print clf.score(test,test_tagets)
+

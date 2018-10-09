@@ -16,7 +16,7 @@ class Main(QMainWindow):
         self.xVals = []
         self.yVals = []
         self.flipAxis = True
-        self.readVals('carDrive.csv') # CHANGE MY NAME FROM TEST.CSV TO UR FILE
+        self.readVals('RHCXX7vA2QY (3).wavCut241.000000.csv') # CHANGE MY NAME FROM TEST.CSV TO UR FILE
         fft = scipy.fftpack.rfft(self.yVals)
         #for i in fft:
             #sys.stdout.write(str(i)+",")

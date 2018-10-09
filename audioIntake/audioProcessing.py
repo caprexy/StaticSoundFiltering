@@ -83,21 +83,22 @@ def mergeWavData(wav1,wav2,mergeWav): #generates a brand new wav file
 #mergeWavData('carDrive.wav','carRideo (1).wav','fan+4000hz.wav')
 #wavToCsv('1000Hz+4000Hz.wav','1000Hz+4000Hz.csv') # maeks csv out of wav ayayayay
 #include tags (.wav/.csv)
+wavToCsv("RHCXX7vA2QY (3).wavCut241.000000.wav","RHCXX7vA2QY (3).wavCut241.000000.csv")
 
 #code to merge 2 sound files together
-talkingList = [] # seperates sounds
-otherList = []
-for filename in os.listdir("C:\\Users\\School\\Documents\\GitHub\\StaticSoundFiltering\\audioIntake\\soundSamples\\pureTalk"): #edit
-    if ".wav" in filename:
-        filename = filename[:-4]
-	#seperate talking and non talking
-        if "talking" in filename:
-            talkingList.append(filename)
-        else:
-            otherList.append(filename)
-
-for i in talkingList:
-    for b in otherList:
-        mergeWavData(i+".wav",b+".wav",i + " " + b + ".wav")
-
-
+##talkingList = [] # seperates sounds
+##otherList = []
+##for filename in os.listdir("C:\\Users\\School\\Documents\\GitHub\\StaticSoundFiltering\\audioIntake\\soundSamples\\pureTalk"): #edit
+##    if ".wav" in filename:
+##        filename = filename[:-4]
+##	#seperate talking and non talking
+##        if "talking" in filename:
+##            talkingList.append(filename)
+##        else:
+##            otherList.append(filename)
+##
+##for i in talkingList:
+##    for b in otherList:
+##        mergeWavData(i+".wav",b+".wav",i + " " + b + ".wav")
+##
+##
